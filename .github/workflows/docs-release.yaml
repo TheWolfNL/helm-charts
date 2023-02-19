@@ -41,5 +41,5 @@ jobs:
           github_token: ${{ steps.get-app-token.outputs.token }}
           publish_dir: ./docs/book/html
           destination_dir: docs
-          user_name: 'bjw-s-bot[bot]'
-          user_email: 'bjw-s-bot <87358111+bjw-s-bot[bot]@users.noreply.github.com>'
+          user_name: 'thewolfnl-bot[bot]'
+          user_email: 'thewolfnl-bot <87358111+thewolfnl-bot[bot]@users.noreply.github.com>'

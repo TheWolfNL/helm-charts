@@ -5,11 +5,11 @@ name: app-template
 version: 1.3.1
 kubeVersion: ">=1.22.0-0"
 maintainers:
-  - name: bjw-s
-    email: me@bjw-s.dev
+  - name: Tjeerd Ritsma
+    email: tpritsma@gmail.com
 dependencies:
   - name: common
-    repository: https://bjw-s.github.io/helm-charts
+    repository: https://thewolfnl.github.io/helm-charts
     version: 1.3.1
 annotations:
   artifacthub.io/changes: |-
@@ -18,4 +18,4 @@ annotations:
         Updated library version to 1.3.1.
       links:
         - name: Common library chart definition
-          url: https://github.com/bjw-s/helm-charts/blob/main/charts/library/common/Chart.yaml
+          url: https://github.com/thewolfnl/helm-charts/blob/main/charts/library/common/Chart.yaml

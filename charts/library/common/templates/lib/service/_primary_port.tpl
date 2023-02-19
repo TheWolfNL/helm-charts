@@ -1,8 +1,8 @@
 {{/*
 Return the primary port for a given Service object.
 */}}
-{{- define "bjw-s.common.lib.service.primaryPort" -}}
-  {{- $enabledPorts := (include "bjw-s.common.lib.service.enabledPorts" . | fromYaml) }}
+{{- define "thewolfnl.common.lib.service.primaryPort" -}}
+  {{- $enabledPorts := (include "thewolfnl.common.lib.service.enabledPorts" . | fromYaml) }}
 
   {{- $result := "" -}}
   {{- range $name, $port := $enabledPorts -}}
