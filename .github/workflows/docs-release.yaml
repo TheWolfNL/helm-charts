@@ -20,8 +20,8 @@ jobs:
         id: get-app-token
         uses: getsentry/action-github-app-token@v2
         with:
-          app_id: ${{ secrets.BJWS_APP_ID }}
-          private_key: ${{ secrets.BJWS_APP_PRIVATE_KEY }}
+          app_id: ${{ secrets.JIMBEI_APP_ID }}
+          private_key: ${{ secrets.JIMBEI_APP_PRIVATE_KEY }}
 
       - name: Checkout main branch
         uses: actions/checkout@v3
@@ -41,5 +41,5 @@ jobs:
           github_token: ${{ steps.get-app-token.outputs.token }}
           publish_dir: ./docs/book/html
           destination_dir: docs
-          user_name: 'thewolfnl-bot[bot]'
-          user_email: 'thewolfnl-bot <87358111+thewolfnl-bot[bot]@users.noreply.github.com>'
+          user_name: 'Jimbei [bot]'
+          user_email: 'Jimbei <6226686+jimbei[bot]@users.noreply.github.com>'

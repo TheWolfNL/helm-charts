@@ -4,7 +4,7 @@
     "github>thewolfnl/renovate-config:automerge-github-actions",
   ],
   platform: "github",
-  username: "thewolfnl-bot[bot]",
-  gitAuthor: "thewolfnl-bot <87358111+thewolfnl-bot[bot]@users.noreply.github.com>",
+  username: "Jimbei [bot]",
+  gitAuthor: "Jimbei <6226686+jimbei[bot]@users.noreply.github.com>",
   repositories: ["thewolfnl/helm-charts"],
 }
