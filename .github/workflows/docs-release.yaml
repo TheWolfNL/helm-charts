@@ -41,5 +41,6 @@ jobs:
           github_token: ${{ steps.get-app-token.outputs.token }}
           publish_dir: ./docs/book/html
           destination_dir: docs
+          cname: helm-charts.ritsma.nu
           user_name: 'Jimbei [bot]'
           user_email: 'Jimbei <6226686+jimbei[bot]@users.noreply.github.com>'
