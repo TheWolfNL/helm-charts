@@ -1,0 +1,58 @@
+image:
+  # -- image repository
+  repository: thewolfnl/nakama
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+  # -- image tag
+  # this example is not automatically updated, so be sure to use the latest image
+  tag: latest
+
+# -- Configures service settings for the chart.
+service:
+  main:
+    ports:
+      grpc:
+        port: 7349
+      http:
+        port: 7350
+      admin:
+        port: 7351
+      prometheus:
+        port: 9100
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  main:
+    enabled: true
+    class: nginx
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-production
+    hosts:
+      - host: nakama.ritsma.nu
+        paths:
+          - path: /
+    tls:
+      - hosts:
+          - nakama.ritsma.nu
+        secretName: tls-nakama
+  admin:
+    enabled: true
+    class: nginx
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-production
+    hosts:
+      - host: admin.nakama.ritsma.nu
+        paths:
+          - path: /
+    tls:
+      - hosts:
+          - admin.nakama.ritsma.nu
+        secretName: tls-nakama-admin
+
+# -- Configure persistence settings for the chart under this key.
+persistence:
+  data:
+    enabled: true
+    mountPath: /nakama
+    type: hostPath
+    hostPath: /datapool/dockerdata/nakama/

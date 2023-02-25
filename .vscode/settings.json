@@ -1,5 +1,7 @@
 {
     "conventionalCommits.scopes": [
+        "charts",
+        "docs",
         "plumbing"
     ]
 }
