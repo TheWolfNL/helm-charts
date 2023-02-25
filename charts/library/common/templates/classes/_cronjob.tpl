@@ -34,7 +34,7 @@ spec:
         metadata:
           {{- with include ("thewolfnl.common.lib.metadata.podAnnotations") . }}
           annotations:
-            {{- . | nindent 10 }}
+            {{- . | nindent 12 }}
           {{- end }}
           labels:
             {{- include "thewolfnl.common.lib.metadata.selectorLabels" . | nindent 12 }}
