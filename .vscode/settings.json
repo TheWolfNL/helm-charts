@@ -2,6 +2,7 @@
     "conventionalCommits.scopes": [
         "charts",
         "docs",
-        "plumbing"
+        "plumbing",
+        "upstream"
     ]
 }

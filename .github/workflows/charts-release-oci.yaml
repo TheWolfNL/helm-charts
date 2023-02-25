@@ -53,7 +53,7 @@ jobs:
           for CHART in "${CHARTS[@]}" ; do
             mapfile -t CHART_PATH_PARTS < <(echo "$CHART" | tr '/' '\n')
             CHART_TYPE=${CHART_PATH_PARTS[0]}
-            CHART_NAME=${CHART_PATH_PARTS[1]}
+            CHART_NAME=$(yq e '.name' ${{ env.CHARTS_SRC_DIR }}/${CHART}/Chart.yaml)
             CHART_VERSION=$(yq e '.version' ${{ env.CHARTS_SRC_DIR }}/${CHART}/Chart.yaml)
 
             helm package "${{ env.CHARTS_SRC_DIR }}/${CHART_TYPE}/${CHART_NAME}" --dependency-update --destination "${{ env.CHARTS_SRC_DIR }}/${CHART_TYPE}"           
