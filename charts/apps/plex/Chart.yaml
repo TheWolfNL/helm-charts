@@ -1,0 +1,25 @@
+---
+apiVersion: v2
+appVersion: v1.28.0.5999-97678ded3
+description: Plex Media Server
+name: plex
+version: 6.4.3
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - plex
+  - plex-media-server
+home: https://github.com/thewolfnl/helm-charts/tree/master/charts/plex
+icon: https://www.plex.tv/wp-content/uploads/2018/01/pmp-icon-1.png
+sources:
+  - https://github.com/thewolfnl/helm-charts/tree/master/charts/plex
+maintainers:
+  - name: Tjeerd Ritsma
+    email: tpritsma@gmail.com
+dependencies:
+  - name: common
+    repository: https://bjw-s.github.io/helm-charts/
+    version: 1.3.2
+annotations:
+  artifacthub.io/changes: |-
+    - kind: changed
+      description: Upgraded `common` chart dependency to version 1.3.2
