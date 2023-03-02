@@ -7,9 +7,9 @@
 
 image:
   # -- image repository
-  repository: zwavejs/zwavejs2mqtt
+  repository: zwavejs/zwave-js-ui
   # -- image tag
-  tag: 5.0.2
+  tag: latest
   # -- image pull policy
   pullPolicy: IfNotPresent
 

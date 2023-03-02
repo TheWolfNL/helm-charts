@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: 8.9.0
 description: Fully configurable Zwave to MQTT Gateway and Control Panel
 name: zwave-js
-version: 8.9.0
+version: 8.9.1
 kubeVersion: ">=1.16.0-0"
 keywords:
   - zwave
