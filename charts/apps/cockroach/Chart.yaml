@@ -1,9 +1,9 @@
 ---
 apiVersion: v2
-appVersion: 5.0.2
+appVersion: v22.1
 description: Resilient db
 name: cockroachdb
-version: 5.4.2
+version: 1.0.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - cockroach

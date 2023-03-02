@@ -13,7 +13,7 @@ service:
     ports:
       admin:
         port: 8080
-      db:
+      main:
         port: 26257
 
 ingress:
