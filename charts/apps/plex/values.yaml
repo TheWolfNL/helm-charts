@@ -86,6 +86,7 @@ hostNetwork: false
 persistence:
   config:
     enabled: true
+    type: hostPath
     mountPath: /config
     hostPath: /application/plex
 
