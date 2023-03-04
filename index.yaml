@@ -10,14 +10,14 @@ entries:
             - name: Common library chart definition
               url: https://github.com/thewolfnl/helm-charts/blob/main/charts/library/common/Chart.yaml
     apiVersion: v2
-    created: "2023-03-04T13:41:27.998241722Z"
+    created: "2023-03-04T13:42:39.454049078Z"
     dependencies:
     - name: common
       repository: https://thewolfnl.github.io/helm-charts
       version: 1.3.2
     description: A common powered chart template. This can be useful for small projects
       that don't have their own chart.
-    digest: 4c039443d0d43cb35f433148209557f50ba965d23ccf87ebe60bea14ccc1f5d5
+    digest: 802eb2ed1dbaa88153d151f042c11d1c7cfbedd60b4548ee1ef1a70fcc9be14d
     kubeVersion: '>=1.22.0-0'
     maintainers:
     - email: tpritsma@gmail.com
@@ -33,7 +33,7 @@ entries:
           description: Upgraded `common` chart dependency to version 1.3.2
     apiVersion: v2
     appVersion: 5.0.2
-    created: "2023-03-04T13:41:27.955603899Z"
+    created: "2023-03-04T13:42:39.395562205Z"
     dependencies:
     - name: common
       repository: https://bjw-s.github.io/helm-charts/
@@ -60,13 +60,13 @@ entries:
           description: Upgraded `common` chart dependency to version 1.3.2
     apiVersion: v2
     appVersion: v22.1
-    created: "2023-03-04T13:41:27.952272235Z"
+    created: "2023-03-04T13:42:39.392094917Z"
     dependencies:
     - name: common
       repository: https://bjw-s.github.io/helm-charts/
       version: 1.3.2
     description: Resilient db
-    digest: 17af6ac4fd5f8882efdd9afb3663d79a3f5a921c60d03c1477f19377ad73cecc
+    digest: 199787feac63ff23abbd67b44d92270de0430e142453fe90f2ae8c48fdb2c4e2
     home: https://github.com/thewolfnl/helm-charts/tree/master/charts/
     icon: https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco,dpr_1/hguvdothzqqj8gfvozy8
     keywords:
@@ -91,7 +91,7 @@ entries:
         - kind: fixed
           description: Pod annotations were not indented enough when controller type was cronjob
     apiVersion: v2
-    created: "2023-03-04T13:41:27.995065561Z"
+    created: "2023-03-04T13:42:39.450798402Z"
     description: Function library for Helm charts
     digest: 9a76aa417352a699bc0a3c1e868dfbf434076e8478c3d279ca91affd3ba85749
     home: https://github.com/thewolfnl/helm-charts/tree/main/charts/library/common
@@ -114,7 +114,7 @@ entries:
           description: Upgraded `common` chart dependency to version 1.3.2
     apiVersion: v2
     appVersion: 2023.2.5
-    created: "2023-03-04T13:41:27.974557665Z"
+    created: "2023-03-04T13:42:39.416575045Z"
     dependencies:
     - name: common
       repository: https://bjw-s.github.io/helm-charts/
@@ -132,7 +132,7 @@ entries:
       repository: https://charts.bitnami.com/bitnami
       version: 5.3.5
     description: Home Assistant
-    digest: 2f87382a733f1e991286757c6b604cdbab52f540299b557b5b56856acf0129e3
+    digest: dcb9d5557859b47118c3789f665b092842ce8149fdb81a43748efe7a6921b531
     home: https://github.com/thewolfnl/helm-charts/tree/master/charts/home-assistant
     icon: https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Home_Assistant_Logo.svg/519px-Home_Assistant_Logo.svg.png
     keywords:
@@ -158,13 +158,13 @@ entries:
           description: Upgraded `common` chart dependency to version 1.3.2
     apiVersion: v2
     appVersion: 3.15.0
-    created: "2023-03-04T13:41:27.977978831Z"
+    created: "2023-03-04T13:42:39.420148339Z"
     dependencies:
     - name: common
       repository: https://bjw-s.github.io/helm-charts/
       version: 1.3.2
     description: Custom Nakama Server
-    digest: 773280d7d197836b0d19898b4e3e9b7888cad802096b10b2a19ee5272c208272
+    digest: 4e0a037dae1df9466cda4f95316cf1d4ce9a792434284f209696dc8d1b8ccb9d
     home: https://github.com/thewolfnl/helm-charts/tree/master/charts/nakama
     icon: https://heroiclabs.com/images/brand/Nakama-icon.svg
     keywords:
@@ -188,7 +188,35 @@ entries:
           description: Upgraded `common` chart dependency to version 1.3.2
     apiVersion: v2
     appVersion: v1.28.0.5999-97678ded3
-    created: "2023-03-04T13:41:27.984294453Z"
+    created: "2023-03-04T13:42:39.429996173Z"
+    dependencies:
+    - name: common
+      repository: https://bjw-s.github.io/helm-charts/
+      version: 1.3.2
+    description: Plex Media Server
+    digest: 7a6173c2d587dd9321facec0a1c70f8baa3ad6f5dd4f13af04566345eca354bf
+    home: https://github.com/thewolfnl/helm-charts/tree/master/charts/plex
+    icon: https://www.plex.tv/wp-content/uploads/2018/01/pmp-icon-1.png
+    keywords:
+    - plex
+    - plex-media-server
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: tpritsma@gmail.com
+      name: Tjeerd Ritsma
+    name: plex
+    sources:
+    - https://github.com/thewolfnl/helm-charts/tree/master/charts/plex
+    urls:
+    - https://thewolfnl.github.io/helm-charts/apps/plex-6.4.4.tgz
+    version: 6.4.4
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: changed
+          description: Upgraded `common` chart dependency to version 1.3.2
+    apiVersion: v2
+    appVersion: v1.28.0.5999-97678ded3
+    created: "2023-03-04T13:42:39.425996856Z"
     dependencies:
     - name: common
       repository: https://bjw-s.github.io/helm-charts/
@@ -210,6 +238,36 @@ entries:
     urls:
     - https://thewolfnl.github.io/helm-charts/apps/plex-6.4.3.tgz
     version: 6.4.3
+  qbittorrent:
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: changed
+          description: Upgraded `common` chart dependency to version 4.5.2
+    apiVersion: v2
+    appVersion: v4.4.2
+    created: "2023-03-04T13:42:39.433506964Z"
+    dependencies:
+    - name: common
+      repository: https://library-charts.k8s-at-home.com
+      version: 4.5.2
+    description: qBittorrent is a cross-platform free and open-source BitTorrent client
+    digest: 34a0e1b57ef770dab377d7cb3188ab46461d10169805854487c17913fc13fba4
+    home: https://github.com/k8s-at-home/charts/tree/master/charts/stable/qbittorrent
+    icon: https://cloud.githubusercontent.com/assets/14862437/23586868/89ef2922-01c4-11e7-869c-52aafcece17f.png
+    keywords:
+    - qbittorrent
+    - torrrent
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    name: qbittorrent
+    sources:
+    - https://github.com/qbittorrent/qBittorrent
+    - https://github.com/k8s-at-home/container-images
+    urls:
+    - https://thewolfnl.github.io/helm-charts/apps/qbittorrent-1.0.0.tgz
+    version: 1.0.0
   zwave-js:
   - annotations:
       artifacthub.io/changes: |-
@@ -217,13 +275,13 @@ entries:
           description: Upgraded `common` chart dependency to version 1.3.2
     apiVersion: v2
     appVersion: 8.9.0
-    created: "2023-03-04T13:41:27.992184905Z"
+    created: "2023-03-04T13:42:39.447280011Z"
     dependencies:
     - name: common
       repository: https://bjw-s.github.io/helm-charts/
       version: 1.3.2
     description: Fully configurable Zwave to MQTT Gateway and Control Panel
-    digest: a790c549ad1c8e3d04527777872a80c9eb0e92dc8c15175e99dd8fd2d34c7d42
+    digest: 98d11513e37c31fb70e383e6972efb31b06732e655bbd4ec9aa98deab6ec151c
     home: https://github.com/thewolfnl/helm-charts/tree/master/charts/zwavejs
     icon: https://raw.githubusercontent.com/zwave-js/zwavejs2mqtt/v4.0.0/static/logo.png
     keywords:
@@ -248,7 +306,7 @@ entries:
           description: Upgraded `common` chart dependency to version 1.3.2
     apiVersion: v2
     appVersion: 8.9.0
-    created: "2023-03-04T13:41:27.988527135Z"
+    created: "2023-03-04T13:42:39.443828124Z"
     dependencies:
     - name: common
       repository: https://bjw-s.github.io/helm-charts/
@@ -273,4 +331,4 @@ entries:
     urls:
     - https://thewolfnl.github.io/helm-charts/apps/zwave-js-8.9.0.tgz
     version: 8.9.0
-generated: "2023-03-04T13:41:27.946552225Z"
+generated: "2023-03-04T13:42:39.388511922Z"
