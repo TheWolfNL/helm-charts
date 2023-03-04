@@ -1,0 +1,163 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: k8sathome/qbittorrent
+  tag: v4.3.3
+  pullPolicy: IfNotPresent
+
+settings:
+  # -- Enables automatic port configuration at startup
+  # This sets the qbittorrent port to the value of `service.bittorrent.ports.bittorrent.port`.
+  automaticPortSetup: false
+
+env:
+  # Our qBittorrent image has a feature that can wait for the VPN to be
+  # connected before actually starting the application.
+  # It does this by checking the contents of a file /shared/vpnstatus to
+  # contain the string 'connected'.
+  WAIT_FOR_VPN: "true"
+  
+  # -- Set the container timezone
+  TZ: Europe/Amsterdam
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 8080
+  bittorrent:
+    enabled: false
+    type: ClusterIP
+    ports:
+      bittorrent:
+        enabled: true
+        port: 6881
+        protocol: TCP
+        targetPort: 6881
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: true
+    class: nginx
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-production
+    hosts:
+      - host: torrent.ritsma.nu
+        paths:
+          - path: /
+    tls:
+      - hosts:
+          - torrent.ritsma.nu
+        secretName: tls-torrent
+
+persistence:
+  config:
+    enabled: true
+    type: hostPath
+    mountPath: /config
+    hostPath: /application/qbittorrent
+  
+  openvpn:
+    enabled: true
+    type: hostPath
+    mountPath: /etc/openvpn/
+    hostPath: /application/pia
+  
+  media:
+    enabled: true
+    type: hostPath
+    mountPath: /media
+    hostPath: /datapool/shareddata/
+
+  downloads:
+    enabled: true
+    type: hostPath
+    mountPath: /downloads
+    hostPath: /datapool/dockerdata/downloads/
+
+  # This should be enabled so that both the qBittorrent and OpenVPN container have access to a shared volume mounted to /shared.
+  # It will be used to communicate between the two containers.
+  shared:
+    enabled: true
+    type: emptyDir
+    mountPath: /shared
+
+metrics:
+  # -- Enable and configure prometheus-qbittorrent-exporter sidecar and Prometheus podMonitor.
+  # @default -- See values.yaml
+  enabled: false
+
+addons:
+  vpn:
+    enabled: true
+    # This Should be set to `openvpn`. This will set the add-on to use the default settings for OpenVPN based connections.
+    type: openvpn
+
+    # If the podSecurityContext is set to run as a different user, make sure to run the OpenVPN container as root. 
+    # This is required for it to be able to read certain configuration files. 
+    securityContext:
+      runAsGroup: 0
+      runAsUser: 0
+
+    env:
+      # Set this environment variable to 'on' to make sure all traffic gets routed through the VPN container.
+      # Make sure to check the other environment variables for the OpenVPN image to see how you can exclude certain
+      # traffic from these firewall rules.
+      FIREWALL: 'on'
+
+    # The .ovpn file provided by your VPN provider goes here.
+    #
+    # Any CA / certificate must either be placed inline, or provided through an additionalVolumeMount so that OpenVPN can find it.
+    #
+    # Pay close attention to the last 3 lines in this file. They must be added if you wish to run a script when the connection
+    # is opened / closed.
+    configFile: |-
+      client
+      dev tun
+      remote switzerland.privateinternetaccess.com 1198 udp
+      remote switzerland.privateinternetaccess.com 502 tcp
+      resolv-retry infinite
+      nobind
+      persist-key
+      persist-tun
+      tls-version-min 1.2
+      cipher AES-128-GCM
+      auth sha1
+      crl-verify /etc/openvpn/crl.rsa.2048.pem
+      ca /etc/openvpn/ca.rsa.2048.crt
+      remote-cert-tls server
+      auth-user-pass /etc/openvpn/creds.conf
+      auth-nocache
+      allow-compression asym
+      verb 1
+      status /etc/openvpn/openvpn.log
+      reneg-sec 0
+      disable-occ
+      tun-mtu-extra 32
+
+      script-security 2
+      up /vpn/up.sh
+      down /vpn/down.sh
+
+    # The scripts that get run when the VPN connection opens/closes are defined here.
+    # The default scripts will write a string to represent the current connection state to a file.
+    # Our qBittorrent image has a feature that can wait for this file to contain the word 'connected' before actually starting the application.
+    scripts:
+      up: |-
+        #!/bin/bash
+        /etc/openvpn/up.sh
+        echo "connected" > /shared/vpnstatus
+
+      down: |-
+        #!/bin/bash
+        /etc/openvpn/down.sh
+        echo "disconnected" > /shared/vpnstatus
