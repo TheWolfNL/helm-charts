@@ -66,6 +66,12 @@ persistence:
     mountPath: /config
     hostPath: /application/qbittorrent
   
+  openvpn:
+    enabled: true
+    type: hostPath
+    mountPath: /etc/openvpn/
+    hostPath: /application/pia
+  
   media:
     enabled: true
     type: hostPath
@@ -150,8 +156,5 @@ addons:
         echo "disconnected" > /shared/vpnstatus
     
     additionalVolumeMounts:
-      openvpn:
-        enabled: true
-        type: hostPath
-        mountPath: /etc/openvpn/
-        hostPath: /application/pia
+      - mountPath: /etc/openvpn/
+        name: openvpn
