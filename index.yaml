@@ -10,7 +10,7 @@ entries:
             - name: Common library chart definition
               url: https://github.com/thewolfnl/helm-charts/blob/main/charts/library/common/Chart.yaml
     apiVersion: v2
-    created: "2023-03-05T22:04:24.564440894Z"
+    created: "2023-03-05T22:05:26.813172206Z"
     dependencies:
     - name: common
       repository: https://thewolfnl.github.io/helm-charts
@@ -33,7 +33,7 @@ entries:
           description: Upgraded `common` chart dependency to version 1.3.2
     apiVersion: v2
     appVersion: 5.0.2
-    created: "2023-03-05T22:04:24.520119441Z"
+    created: "2023-03-05T22:05:26.762285647Z"
     dependencies:
     - name: common
       repository: https://bjw-s.github.io/helm-charts/
@@ -60,7 +60,7 @@ entries:
           description: Upgraded `common` chart dependency to version 1.3.2
     apiVersion: v2
     appVersion: v22.1
-    created: "2023-03-05T22:04:24.517400635Z"
+    created: "2023-03-05T22:05:26.759191337Z"
     dependencies:
     - name: common
       repository: https://bjw-s.github.io/helm-charts/
@@ -91,7 +91,7 @@ entries:
         - kind: fixed
           description: Pod annotations were not indented enough when controller type was cronjob
     apiVersion: v2
-    created: "2023-03-05T22:04:24.561070184Z"
+    created: "2023-03-05T22:05:26.810038696Z"
     description: Function library for Helm charts
     digest: 9a76aa417352a699bc0a3c1e868dfbf434076e8478c3d279ca91affd3ba85749
     home: https://github.com/thewolfnl/helm-charts/tree/main/charts/library/common
@@ -114,7 +114,7 @@ entries:
           description: Upgraded `common` chart dependency to version 1.3.2
     apiVersion: v2
     appVersion: 2023.2.5
-    created: "2023-03-05T22:04:24.535485777Z"
+    created: "2023-03-05T22:05:26.779747001Z"
     dependencies:
     - name: common
       repository: https://bjw-s.github.io/helm-charts/
@@ -158,7 +158,7 @@ entries:
           description: Upgraded `common` chart dependency to version 1.3.2
     apiVersion: v2
     appVersion: 3.15.0
-    created: "2023-03-05T22:04:24.54044953Z"
+    created: "2023-03-05T22:05:26.783614413Z"
     dependencies:
     - name: common
       repository: https://bjw-s.github.io/helm-charts/
@@ -188,7 +188,7 @@ entries:
           description: Upgraded `common` chart dependency to version 1.3.2
     apiVersion: v2
     appVersion: v1.28.0.5999-97678ded3
-    created: "2023-03-05T22:04:24.54626701Z"
+    created: "2023-03-05T22:05:26.791807639Z"
     dependencies:
     - name: common
       repository: https://bjw-s.github.io/helm-charts/
@@ -216,7 +216,7 @@ entries:
           description: Upgraded `common` chart dependency to version 1.3.2
     apiVersion: v2
     appVersion: v1.28.0.5999-97678ded3
-    created: "2023-03-05T22:04:24.543447262Z"
+    created: "2023-03-05T22:05:26.788659529Z"
     dependencies:
     - name: common
       repository: https://bjw-s.github.io/helm-charts/
@@ -242,10 +242,40 @@ entries:
   - annotations:
       artifacthub.io/changes: |-
         - kind: changed
+          description: Upgraded `common` chart dependency to version 1.3.2
+    apiVersion: v2
+    appVersion: v4.4.2
+    created: "2023-03-05T22:05:26.799139462Z"
+    dependencies:
+    - name: common
+      repository: https://bjw-s.github.io/helm-charts/
+      version: 1.3.2
+    description: qBittorrent is a cross-platform free and open-source BitTorrent client
+    digest: 4e5d054b43621085c7a4fa6c47b1522cbf14e4eff5e1caa0d0b1d4b18c14df4c
+    home: https://github.com/thewolfnl/helm-charts/tree/master/charts/qbittorrent
+    icon: https://cloud.githubusercontent.com/assets/14862437/23586868/89ef2922-01c4-11e7-869c-52aafcece17f.png
+    keywords:
+    - qbittorrent
+    - torrrent
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: tpritsma@gmail.com
+      name: Tjeerd Ritsma
+    name: qbittorrent
+    sources:
+    - https://github.com/qbittorrent/qBittorrent
+    - https://github.com/k8s-at-home/container-images
+    - https://github.com/thewolfnl/helm-charts/tree/master/charts/qbittorrent
+    urls:
+    - https://thewolfnl.github.io/helm-charts/apps/qbittorrent-1.0.1.tgz
+    version: 1.0.1
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: changed
           description: Upgraded `common` chart dependency to version 4.5.2
     apiVersion: v2
     appVersion: v4.4.2
-    created: "2023-03-05T22:04:24.55260914Z"
+    created: "2023-03-05T22:05:26.79530665Z"
     dependencies:
     - name: common
       repository: https://library-charts.k8s-at-home.com
@@ -275,7 +305,7 @@ entries:
           description: Upgraded `common` chart dependency to version 1.3.2
     apiVersion: v2
     appVersion: 8.9.0
-    created: "2023-03-05T22:04:24.558271346Z"
+    created: "2023-03-05T22:05:26.807281487Z"
     dependencies:
     - name: common
       repository: https://bjw-s.github.io/helm-charts/
@@ -306,7 +336,7 @@ entries:
           description: Upgraded `common` chart dependency to version 1.3.2
     apiVersion: v2
     appVersion: 8.9.0
-    created: "2023-03-05T22:04:24.55547561Z"
+    created: "2023-03-05T22:05:26.802655073Z"
     dependencies:
     - name: common
       repository: https://bjw-s.github.io/helm-charts/
@@ -331,4 +361,4 @@ entries:
     urls:
     - https://thewolfnl.github.io/helm-charts/apps/zwave-js-8.9.0.tgz
     version: 8.9.0
-generated: "2023-03-05T22:04:24.514285128Z"
+generated: "2023-03-05T22:05:26.755703126Z"
