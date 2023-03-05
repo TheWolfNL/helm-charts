@@ -1,11 +1,11 @@
-{{- include "common.values.setup" . -}}
+{{- include "bjw-s.common.values.init" . -}}
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "common.names.fullname" . }}-scripts
+  name: {{ template "bjw-s.common.lib.chart.names.fullname" . }}-scripts
   labels:
-    {{- include "common.labels" . | nindent 4 }}
+    {{- include "bjw-s.common.lib.metadata.allLabels" . | nindent 4 }}
 data:
   {{- /* Determine if the bittorrent port is enabled */ -}}
   {{- $bittorrentPort := .Values.service.bittorrent.ports.bittorrent.port -}}

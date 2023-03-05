@@ -1,6 +1,6 @@
 
 {{/* Make sure all variables are set properly */}}
-{{- include "common.values.setup" . }}
+{{- include "bjw-s.common.values.init" . }}
 
 {{/* Append the hardcoded settings */}}
 {{- define "qbittorrent.harcodedValues" -}}
@@ -12,7 +12,7 @@ persistence:
     type: "custom"
     volumeSpec:
       configMap:
-        name: {{ include "common.names.fullname" . }}-scripts
+        name: {{ include "bjw-s.common.lib.chart.names.fullname" . }}-scripts
         defaultMode: 511
 {{ end }}
 
