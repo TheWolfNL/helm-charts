@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: v4.4.2
 description: qBittorrent is a cross-platform free and open-source BitTorrent client
 name: qbittorrent
-version: 1.0.1
+version: 1.0.2
 kubeVersion: ">=1.16.0-0"
 keywords:
   - qbittorrent
@@ -23,5 +23,7 @@ dependencies:
     version: 1.3.2
 annotations:
   artifacthub.io/changes: |-
+    - kind: changed
+      description: update vpn addon config
     - kind: changed
       description: Upgraded `common` chart dependency to version 1.3.2
