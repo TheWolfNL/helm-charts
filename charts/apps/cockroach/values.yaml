@@ -12,8 +12,9 @@ service:
   main:
     ports:
       admin:
+        enabled: true
         port: 8080
-      main:
+      http:
         port: 26257
 
 ingress:

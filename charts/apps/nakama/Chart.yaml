@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: 3.15.0
 description: Custom Nakama Server
 name: nakama
-version: 3.15.0
+version: 1.0.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - nakama
