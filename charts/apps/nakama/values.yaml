@@ -20,26 +20,12 @@ service:
       prometheus:
         port: 9100
 
-# -- Override the command(s) for the default container
-command: [ "/bin/sh" ]
-# -- Override the args for the default container
-args: 
-  - "-ecx"
-  - >
-      /nakama/nakama --config /nakama/data/config.yml
-
 initContainers:
   migrate:
     image:
     # -- image repository
     repository: thewolfnl/nakama
-    command: [ "/bin/sh" ]
-    # -- Override the args for the default container
-    args: 
-      - "-ecx"
-      - >
-          /nakama/nakama migrate up --config /nakama/data/config.yml
-
+    command: [ "/nakama/scripts/migrate" ]
 
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
