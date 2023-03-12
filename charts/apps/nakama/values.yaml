@@ -22,10 +22,11 @@ service:
 
 initContainers:
   migrate:
-    image:
-    # -- image repository
-    repository: thewolfnl/nakama
+    image: thewolfnl/nakama
     command: [ "/nakama/scripts/migrate" ]
+    volumeMounts:
+      - name: data
+        mountPath: /nakama/data
 
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
