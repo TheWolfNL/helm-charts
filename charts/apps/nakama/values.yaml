@@ -26,8 +26,20 @@ command: [ "/bin/sh" ]
 args: 
   - "-ecx"
   - >
-      /nakama/nakama migrate up --database.address root@cockroachdb:26257 &&
-      exec /nakama/nakama --name nakama1 --database.address root@cockroachdb:26257 --logger.level DEBUG --session.token_expiry_sec 7200 --metrics.prometheus_port 9100
+      /nakama/nakama --config /nakama/data/config.yml
+
+initContainers:
+  migrate:
+    image:
+    # -- image repository
+    repository: thewolfnl/nakama
+    command: [ "/bin/sh" ]
+    # -- Override the args for the default container
+    args: 
+      - "-ecx"
+      - >
+          /nakama/nakama migrate up --config /nakama/data/config.yml
+
 
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
@@ -44,6 +56,24 @@ ingress:
       - hosts:
           - nakama.ritsma.nu
         secretName: tls-nakama
+  grpc:
+    enabled: true
+    class: nginx
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-production
+    hosts:
+      - host: grpc.nakama.ritsma.nu
+        paths:
+          - path: /
+            service:
+              # -- Overrides the service name reference for this path
+              name: main
+              # -- Overrides the service port reference for this path
+              port: 7349
+    tls:
+      - hosts:
+          - grpc.nakama.ritsma.nu
+        secretName: tls-nakama-grpc
   admin:
     enabled: true
     class: nginx
@@ -53,6 +83,11 @@ ingress:
       - host: admin.nakama.ritsma.nu
         paths:
           - path: /
+            service:
+              # -- Overrides the service name reference for this path
+              name: main
+              # -- Overrides the service port reference for this path
+              port: 7351
     tls:
       - hosts:
           - admin.nakama.ritsma.nu
@@ -61,7 +96,7 @@ ingress:
 # -- Configure persistence settings for the chart under this key.
 persistence:
   data:
-    enabled: false
+    enabled: true
     mountPath: /nakama/data
     type: hostPath
     hostPath: /application/nakama/
