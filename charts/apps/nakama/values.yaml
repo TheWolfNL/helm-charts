@@ -54,7 +54,7 @@ ingress:
           - path: /
             service:
               # -- Overrides the service name reference for this path
-              name: main
+              name: nakama
               # -- Overrides the service port reference for this path
               port: 7349
     tls:
@@ -72,7 +72,7 @@ ingress:
           - path: /
             service:
               # -- Overrides the service name reference for this path
-              name: main
+              name: nakama
               # -- Overrides the service port reference for this path
               port: 7351
     tls:
