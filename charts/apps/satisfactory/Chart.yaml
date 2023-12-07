@@ -1,0 +1,26 @@
+---
+apiVersion: v2
+appVersion: v1.3.1
+description: Satisfactory dedicated server
+name: satisfactory
+version: 0.0.1
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - satisfactory
+  - steam
+  - game
+home: https://www.satisfactorygame.com
+icon: https://img2.storyblok.com/fit-in/0x200/filters:format(webp)/f/110098/268x268/d1ebbafe03/logo.png
+sources:
+  - https://github.com/wolveix/satisfactory-server
+maintainers:
+  - name: Tjeerd Ritsma
+    email: tpritsma@gmail.com
+dependencies:
+  - name: common
+    repository: https://bjw-s.github.io/helm-charts/
+    version: 1.3.2
+annotations:
+  artifacthub.io/changes: |-
+    - kind: changed
+      description: Upgraded `common` chart dependency to version 1.3.2
