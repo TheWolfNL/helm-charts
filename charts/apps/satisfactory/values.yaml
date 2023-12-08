@@ -41,6 +41,7 @@ env:
 # @default -- See values.yaml
 service:
   main:
+    type: NodePort
     ports:
       http:
         enabled: false
