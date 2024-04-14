@@ -59,6 +59,10 @@ service:
         port: 7777
         protocol: UDP
 
+# make nodeports work
+hostNetwork: true
+dnsPolicy: ClusterFirstWithHostNet
+
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml
 persistence:

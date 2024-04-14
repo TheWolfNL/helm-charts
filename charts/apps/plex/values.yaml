@@ -61,6 +61,10 @@ service:
         targetPort: 1900
     externalTrafficPolicy: Local
 
+# make nodeports work
+hostNetwork: true
+dnsPolicy: ClusterFirstWithHostNet
+
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
   # @default -- See values.yaml
