@@ -1,0 +1,22 @@
+---
+apiVersion: v2
+appVersion: 2024.03.2
+description: Pihole, adblock DNS
+name: pihole
+version: 0.0.1
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - dns
+  - privacy
+  - pihole
+sources:
+  - https://hub.docker.com/r/pihole/pihole
+  - https://github.com/thewolfnl/helm-charts/tree/master/charts/pihole
+icon: https://www.gravatar.com/avatar/7119e1e3c13a1cf50843f3d89d5e0f33?s=120&r=g&d=404
+maintainers:
+  - name: Tjeerd Ritsma
+    email: tpritsma@gmail.com
+dependencies:
+  - name: common
+    repository: https://bjw-s.github.io/helm-charts/
+    version: 1.3.2
