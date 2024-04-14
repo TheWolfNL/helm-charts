@@ -28,6 +28,7 @@ service:
       http:
         port: 80
   dns:
+    type: NodePort
     enabled: true
     ports:
       dns-tcp:
@@ -82,4 +83,5 @@ persistence:
 securityContext:
   capabilities:
     add:
-      - NET_ADMIN
+      # Only required if you are using Pi-hole as your DHCP server
+      # - NET_ADMIN
