@@ -36,7 +36,7 @@ controllers:
           # @default -- chart.appVersion
           tag: latest
           # -- image pull policy
-          pullPolicy: always
+          pullPolicy: Always
         env:
           TZ: UTC # -- Set the container timezone
           AUTOPAUSE: true # -- pause game when no player is connected
