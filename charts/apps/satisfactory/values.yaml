@@ -9,9 +9,9 @@ image:
   # -- image repository
   repository: wolveix/satisfactory-server
   # @default -- chart.appVersion
-  tag:
+  tag: latest
   # -- image pull policy
-  pullPolicy: IfNotPresent
+  pullPolicy: always
 
 # -- environment variables. See [plex docs](https://support.plex.tv/articles/201105343-advanced-hidden-server-settings/) for more details.
 # **NOTE:** Plex preference options are camelCase and CASE SENSITIVE!
@@ -20,9 +20,9 @@ image:
 env:
   # -- Set the container timezone
   TZ: UTC
-  # AUTOPAUSE: true # -- pause game when no player is connected
+  AUTOPAUSE: true # -- pause game when no player is connected
   # AUTOSAVEINTERVAL: 300 # -- autosave interval in seconds
-  # AUTOSAVENUM: 3 # -- number of rotating autosave files
+  # AUTOSAVENUM: 5 # -- number of rotating autosave files
   # AUTOSAVEONDISCONNECT: true # -- autosave when last player disconnects
   # CRASHREPORT: true # -- automatic crash reporting
   # DEBUG: false # -- for debugging the server
@@ -30,12 +30,18 @@ env:
   # MAXPLAYERS: 4 # -- set the player limit for your server
   # PGID: 1000 # -- set the group ID of the user the server will run as
   # PUID: 1000 # -- set the user ID of the user the server will run as
-  # SERVERBEACONPORT: 15000 # -- set the game's beacon port
-  # SERVERGAMEPORT: 7777 # -- set the game's port
-  # SERVERIP: 0.0.0.0    # -- set the game's ip (usually not needed)
-  # SERVERQUERYPORT: 15777 # -- set the game's query port
+  ROOTLESS: false # -- allow the server to run as root
+  # SERVERIP: 0.0.0.0    # -- set the game's ip
   # SKIPUPDATE: false # -- avoid updating the game on container start/restart
-  # STEAMBETA: false # -- set experimental game version
+  STEAMBETA: false # -- set experimental game version
+
+resources:
+  limits:
+    # cpu: 100m
+    memory: 6Gi
+  requests:
+    # cpu: 100m
+    memory: 4Gi
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
@@ -46,18 +52,14 @@ service:
       http:
         enabled: false
         primary: false
-      query:
-        enabled: true
-        port: 15777
-        protocol: UDP
-      beacon:
-        enabled: true
-        port: 15000
-        protocol: UDP
       game:
         enabled: true
         port: 7777
         protocol: UDP
+      game2:
+        enabled: true
+        port: 7777
+        protocol: TCP
 
 # make nodeports work
 hostNetwork: true
