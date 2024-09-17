@@ -2,46 +2,8 @@
 # IMPORTANT NOTE
 #
 # This chart inherits from our common library chart. You can check the default values/options here:
-# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+# https://github.com/bjw-s/helm-charts/blob/main/charts/library/common/values.yaml
 #
-
-image:
-  # -- image repository
-  repository: wolveix/satisfactory-server
-  # @default -- chart.appVersion
-  tag: latest
-  # -- image pull policy
-  pullPolicy: always
-
-# -- environment variables. See [plex docs](https://support.plex.tv/articles/201105343-advanced-hidden-server-settings/) for more details.
-# **NOTE:** Plex preference options are camelCase and CASE SENSITIVE!
-# You can do horrible things to your Plex configuration if you are not careful
-# @default -- See below
-env:
-  # -- Set the container timezone
-  TZ: UTC
-  AUTOPAUSE: true # -- pause game when no player is connected
-  # AUTOSAVEINTERVAL: 300 # -- autosave interval in seconds
-  # AUTOSAVENUM: 5 # -- number of rotating autosave files
-  # AUTOSAVEONDISCONNECT: true # -- autosave when last player disconnects
-  # CRASHREPORT: true # -- automatic crash reporting
-  # DEBUG: false # -- for debugging the server
-  # DISABLESEASONALEVENTS: false # -- disable the FICSMAS event (you miserable bastard)
-  # MAXPLAYERS: 4 # -- set the player limit for your server
-  # PGID: 1000 # -- set the group ID of the user the server will run as
-  # PUID: 1000 # -- set the user ID of the user the server will run as
-  ROOTLESS: false # -- allow the server to run as root
-  # SERVERIP: 0.0.0.0    # -- set the game's ip
-  # SKIPUPDATE: false # -- avoid updating the game on container start/restart
-  STEAMBETA: false # -- set experimental game version
-
-resources:
-  limits:
-    # cpu: 100m
-    memory: 6Gi
-  requests:
-    # cpu: 100m
-    memory: 4Gi
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
@@ -51,19 +13,61 @@ service:
     ports:
       http:
         enabled: false
-        primary: false
       game:
         enabled: true
+        primary: true
         port: 7777
-        protocol: UDP
+        protocol: TCP
       game2:
         enabled: true
         port: 7777
-        protocol: TCP
+        protocol: UDP
 
-# make nodeports work
-hostNetwork: true
-dnsPolicy: ClusterFirstWithHostNet
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/app-template-3.0.3/charts/other/app-template/schemas/helmrelease-helm-v2beta2.schema.json
+controllers:
+  main:
+    strategy: RollingUpdate
+    containers:
+      main:
+        image:
+          # -- image repository
+          repository: wolveix/satisfactory-server
+          # @default -- chart.appVersion
+          tag: latest
+          # -- image pull policy
+          pullPolicy: always
+        env:
+          TZ: UTC # -- Set the container timezone
+          AUTOPAUSE: true # -- pause game when no player is connected
+          # AUTOSAVEINTERVAL: 300 # -- autosave interval in seconds
+          # AUTOSAVENUM: 5 # -- number of rotating autosave files
+          # AUTOSAVEONDISCONNECT: true # -- autosave when last player disconnects
+          # CRASHREPORT: true # -- automatic crash reporting
+          # DEBUG: false # -- for debugging the server
+          # DISABLESEASONALEVENTS: false # -- disable the FICSMAS event (you miserable bastard)
+          # MAXPLAYERS: 4 # -- set the player limit for your server
+          # PGID: 1000 # -- set the group ID of the user the server will run as
+          # PUID: 1000 # -- set the user ID of the user the server will run as
+          ROOTLESS: false # -- allow the server to run as root
+          # SERVERIP: 0.0.0.0    # -- set the game's ip
+          # SKIPUPDATE: false # -- avoid updating the game on container start/restart
+          STEAMBETA: false # -- set experimental game version
+        resources: {}
+        #   limits:
+        #     # cpu: 100m
+        #     memory: 6Gi
+        #   requests:
+        #     # cpu: 100m
+        #     memory: 4Gi
+
+        probes:
+          liveness:
+            enabled: true
+          readiness:
+            enabled: true
+          startup:
+            enabled: true
 
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml
@@ -78,19 +82,7 @@ persistence:
   # recommend this is kept in a seperate PVC so just config can be backed up.
   # no point backing up downloaded game content
   server-cache:
-    enabled: false
+    enabled: true
     mountPath: /config/gamefiles
     accessMode: ReadWriteOnce
     size: 20Gi
-
-# Probes are not currently used
-# as it is difficult to detect liveness of a UDP server
-probes:
-  startup:
-    enabled: false
-
-  liveness:
-    enabled: false
-
-  readiness:
-    enabled: false
