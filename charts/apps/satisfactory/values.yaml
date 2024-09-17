@@ -9,6 +9,7 @@
 # @default -- See values.yaml
 service:
   main:
+    controller: main
     type: NodePort
     ports:
       http:
