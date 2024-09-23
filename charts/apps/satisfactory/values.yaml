@@ -14,12 +14,12 @@ service:
     ports:
       http:
         enabled: false
-      game:
+      gametcp:
         enabled: true
         primary: true
         port: 7777
         protocol: TCP
-      game2:
+      game:
         enabled: true
         port: 7777
         protocol: UDP
@@ -64,10 +64,14 @@ controllers:
         probes:
           liveness:
             enabled: true
-          readiness:
-            enabled: true
+            custom: true
+            spec:
+              exec:
+                command:
+                  - /healthcheck.sh
           startup:
             enabled: true
+            type: TCP
 
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml
@@ -77,12 +81,4 @@ persistence:
     type: hostPath
     mountPath: /config
     hostPath: /application/satisfactory
-
-  # server download game files from steam to the below folder
-  # recommend this is kept in a seperate PVC so just config can be backed up.
-  # no point backing up downloaded game content
-  server-cache:
-    enabled: true
-    mountPath: /config/gamefiles
-    accessMode: ReadWriteOnce
-    size: 20Gi
+    hostPathType: DirectoryOrCreate
